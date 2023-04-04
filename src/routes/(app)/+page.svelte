@@ -2,35 +2,19 @@
 	import { page } from '$app/stores';
 </script>
 
-<header>
-	<nav>
-		<div class="font-bold text-lg">
-			<span class="text-green-600">Ghost</span>
-		</div>
-		<ul>
-			<li>
-				<a
-					class:!text-green-600={$page.url.pathname == '/'}
-					class:bg-gray-100={$page.url.pathname == '/'}
-					href="/">Home</a
-				>
-			</li>
-			<li><a href="/products">Products</a></li>
-		</ul>
-	</nav>
-</header>
+
 
 <section class="w-full">
 
     <div class="m-auto py-10" style="max-width: 1024px;">
         <div class="text-3xl">
-            Best pickups
+            Recommendation
         </div>
     </div>
 
 	<div class="products">
 		{#each Array.from({ length: 2 }) as product, index}
-			<div class="product flex-col">
+			<a class="product flex-col" href="/products/{index}">
 				<div class="image" style="background-image: url(images/{index}.jpg);" />
 				<div class="p-3">
 					<div class="flex items-center justify-between">
@@ -62,33 +46,13 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</a>
 		{/each}
 	</div>
 </section>
 
 <style lang="postcss">
-	header {
-		width: 100%;
-		@apply bg-white shadow-sm;
-	}
-
-	nav {
-		max-width: 1024px;
-		@apply w-full m-auto h-16 flex items-center space-x-6;
-	}
-
-	nav ul {
-		@apply list-none;
-	}
-
-	nav ul li {
-		@apply inline-block;
-	}
-
-	nav ul li a {
-		@apply block px-2.5 py-1 rounded-lg text-sm border-transparent hover:border-green-600 hover:text-green-600 text-gray-600;
-	}
+	
 
 	.products {
 		max-width: 1024px;
