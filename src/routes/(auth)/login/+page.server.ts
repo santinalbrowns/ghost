@@ -37,8 +37,6 @@ export const actions: Actions = {
                 return fail(400, { credentials: true });
             };
 
-            console.log(user);
-
             const valid = await bcrypt.compare(body.password, user.password);
 
             if (!valid) {

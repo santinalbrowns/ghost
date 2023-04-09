@@ -1,27 +1,25 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+	import type { PageData } from './$types';
+
+	export let data: PageData;
 </script>
 
-
-
 <section class="w-full">
-
-    <div class="m-auto py-10" style="max-width: 1024px;">
-        <div class="text-3xl">
-            Recommendation
-        </div>
-    </div>
+	<div class="m-auto py-10 hidden" style="max-width: 1024px;">
+		<div class="text-3xl">Recommendation</div>
+	</div>
 
 	<div class="products">
-		{#each Array.from({ length: 2 }) as product, index}
-			<a class="product flex-col" href="/products/{index}">
-				<div class="image" style="background-image: url(images/{index}.jpg);" />
+		{#each data.products as product}
+			<a class="product flex-col" href="/products/{product.id}">
+				<div class="image" style="background-image: url(images/{product.image}.jpg);" />
 				<div class="p-3">
 					<div class="flex items-center justify-between">
-						<div class="">Shopping Bags</div>
-						<div class="text-lg">$50</div>
+						<div class="">{product.name}</div>
+						<div class="text-lg">${product.price}</div>
 					</div>
-					<div class="text-xs">Paper</div>
+					<div class="text-xs">{product.description}</div>
 
 					<div class="flex items-center justify-between relative">
 						<div class="flex items-center space-x-2 text-sm">
@@ -32,18 +30,6 @@
 								{/each}
 							</div>
 						</div>
-						<div class="absolute right-0 -top-3">
-							<div class="relative">
-								<span class="material-symbols-outlined !text-2xl text-gray-500"> local_mall </span>
-
-								<div
-									class="bg-green-500 absolute flex items-center justify-center h-4 w-4 rounded-full"
-									style="top: 20px; left: 4px"
-								>
-									<span class="material-symbols-outlined !text-xs text-white"> add </span>
-								</div>
-							</div>
-						</div>
 					</div>
 				</div>
 			</a>
@@ -52,8 +38,6 @@
 </section>
 
 <style lang="postcss">
-	
-
 	.products {
 		max-width: 1024px;
 		@apply grid grid-cols-3 gap-10 w-full m-auto;

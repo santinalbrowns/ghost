@@ -14,6 +14,14 @@ export async function handle({ event, resolve }) {
     });
 
     if(user) {
+
+        if(user.role == "admin" && event.url.pathname === '/') {
+
+            console.log(event.url.pathname);
+
+            //throw redirect(302, '/product');
+        }
+
         event.locals.user = {
             id: user.Id,
             firstname: user.firstname,

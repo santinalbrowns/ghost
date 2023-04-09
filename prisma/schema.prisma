@@ -10,7 +10,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
+model user {
   Id        Int    @id @default(autoincrement())
   email     String @unique @db.VarChar(255)
   firstname String @db.VarChar(40)
@@ -19,23 +19,10 @@ model User {
   role      String @db.VarChar(40)
 }
 
-model Product {
+model product {
   id Int @id @default(autoincrement())
   name String @db.VarChar(40)
   description String @db.VarChar(255)
+  image String @db.VarChar(255)
   price Float
-}
-
-model Category {
-  id Int @id @default(autoincrement())
-  name String @db.VarChar(40)
-}
-
-model Rating {
-  id Int @id @default(autoincrement())
-  rate Int
-}
-
-model Review {
-  id Int @id @default(autoincrement())
 }
